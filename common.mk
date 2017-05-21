@@ -104,8 +104,8 @@ PRODUCT_PACKAGES += \
     qdcm_calib_data_samsung_s6e3fc1_cmd_mode_dsi_panel.xml
 
 # Doze mode
-#PRODUCT_PACKAGES += \
-#    OneplusDoze
+PRODUCT_PACKAGES += \
+    OneplusThreeDoze
 
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
