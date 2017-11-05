@@ -41,6 +41,10 @@
 # Param
 /(vendor|system/vendor)/bin/hw/vendor\.oneplus\.hardware\.param@1\.0-service    u:object_r:hal_param_default_exec:s0
 
+# Power
+/(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.0-service-qti      u:object_r:hal_power_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.1-service-qti      u:object_r:hal_power_default_exec:s0
+
 # Ril
 /data/vendor/oemnvitems(/.*)?                                   u:object_r:nv_data_file:s0
 /(vendor|system/vendor)/radio/qcril_database/qcril.db           u:object_r:nv_data_file:s0
