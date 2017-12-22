@@ -268,6 +268,9 @@ on boot
     chown system system /sys/module/fpc1020_tee/parameters/ignor_home_for_ESD
     chmod 660 /sys/module/fpc1020_tee/parameters/ignor_home_for_ESD
 
+    # HAL1 package list
+    setprop camera.hal1.packagelist "com.instagram.android,com.tencent.mm,com.whatsapp"
+
 #ifdef VENDOR_EDIT
     # camera. enable mobicat
     setprop persist.camera.mobicat 2
