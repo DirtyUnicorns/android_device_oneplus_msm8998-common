@@ -25,7 +25,6 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-#
 
 on early-init
     mkdir /firmware 0771 system system
@@ -263,14 +262,13 @@ on boot
    chmod 0666 /sys/devices/virtual/graphics/fb0/adaption_mode
 #endif
 
-#install video modules
-   insmod /system/lib/modules/msm-vidc-vmem.ko
-   insmod /system/lib/modules/msm-vidc.ko
-   insmod /system/lib/modules/msm-vidc-dyn-gov.ko
-   insmod /system/lib/modules/msm-vidc-table-gov.ko
+   # Fingerprint GOODIX
+   chmod 0666 /dev/goodix_fp
 
-    # Fingerprint GOODIX
-    chmod 0666 /dev/goodix_fp
+   # Load WLAN driver, to satisfy wificond
+   insmod /system/lib/modules/wlan.ko
+   chown wifi wifi /sys/module/wlan/parameters/fwpath
+   setprop wlan.driver.status "ok"
 
 # DASH
 service dashd /sbin/dashd

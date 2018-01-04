@@ -98,6 +98,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.frp.pst=/dev/block/bootdevice/by-name/config
 
+# Google Assistant
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opa.eligible_device=true
+
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.hw=1 \
@@ -110,6 +114,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.wfd.enable=1 \
     persist.sys.wfd.virtual=0 \
     persist.hwc.enable_vds=1
+
+# LCD Density
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sf.lcd_density=420
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -206,12 +214,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.sensors.dpc=true \
     ro.vendor.sensors.multishake=true
 
+# Tethering
+PRODUCT_PROPERTY_OVERRIDES += \
+    net.tethering.noprovisioning=true
+
 # Timeservice
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true
 
 # USB
 PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.usb.config=mtp,adb \
+    ro.adb.secure=0 \
     sys.usb.controller=a800000.dwc3 \
     sys.usb.rndis.func.name=gsi \
     sys.usb.rmnet.func.name=gsi
