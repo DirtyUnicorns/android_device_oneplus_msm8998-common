@@ -1,0 +1,1 @@
+allow radio radio_service:service_manager add;

@@ -1,6 +1,19 @@
 allow hal_fingerprint_default tee_device:chr_file { rw_file_perms };
+allow hal_fingerprint_default sysfs:file { write };
 allow hal_fingerprint_default firmware_file:dir { search };
 allow hal_fingerprint_default firmware_file:file { r_file_perms };
 allow hal_fingerprint_default sysfs_fpc_key:file { rw_file_perms };
 allow hal_fingerprint_default sysfs_fpc_irq:file { rw_file_perms };
 allow hal_fingerprint_default sysfs_fpc_screen:file { rw_file_perms };
+allow hal_fingerprint_default fingerprint_service:service_manager { find };
+allow hal_fingerprint_default fingerprintd_data_file:file { open rw_file_perms };
+
+allow hal_fingerprint_default fingerprintd_device:chr_file { ioctl open read write };
+allow hal_fingerprint_default self:netlink_socket { bind create getattr getopt read setopt write };
+allow hal_fingerprint_default servicemanager:binder call;
+allow hal_fingerprint_default power_service:service_manager find;
+
+binder_call(system_app, hal_fingerprint_default);
+binder_call(hal_fingerprint_default, system_app);
+
+file_type_auto_trans(hal_fingerprint_default, system_data_file, fingerprintd_data_file);
