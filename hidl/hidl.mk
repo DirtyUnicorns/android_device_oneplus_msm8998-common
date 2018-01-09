@@ -1,6 +1,7 @@
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
+    android.hidl.manager@1.0 \
     android.hidl.manager@1.0-java
 
 # Audio
@@ -83,7 +84,7 @@ PRODUCT_PACKAGES += \
     android.hardware.power@1.0-impl \
     android.hardware.power@1.0-service
 
-# RenderScript HAL
+# RenderScript
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
 
@@ -114,6 +115,6 @@ PRODUCT_PACKAGES += \
     android.hardware.vr@1.0-impl \
     android.hardware.vr@1.0-service
 
-# Wifi
+# WiFi
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service

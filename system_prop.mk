@@ -173,8 +173,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ril.subscription.types=NV,RUIM \
     ro.telephony.default_network=22,20 \
     telephony.lteOnCdmaDevice=1 \
+    ro.telephony.default_cdma_sub=0 \
     keyguard.no_require_sim=true \
-    ro.com.android.dataroaming=true \
+    ro.com.android.dataroaming=false \
     persist.sys.oem_smooth=1
 
 PRODUCT_PROPERTY_OVERRIDES += \

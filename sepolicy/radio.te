@@ -1,1 +1,8 @@
 allow radio radio_service:service_manager add;
+allow radio system_app_data_file:dir { getattr };
+allow radio qcom_ims_prop:property_service set;
+allow radio vnd_ims_radio_hwservice:hwservice_manager find;
+
+get_prop(radio, qcom_ims_prop)
+
+set_prop(radio, qti_telephony_prop);
