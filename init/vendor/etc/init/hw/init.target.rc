@@ -358,7 +358,8 @@ on boot
    # Load WLAN driver, to satisfy wificond
    insmod /system/lib/modules/wlan.ko
    chown wifi wifi /sys/module/wlan/parameters/fwpath
-   setprop wlan.driver.status "ok"
+   # will be set later
+   # setprop wlan.driver.status "ok"
    setprop ro.boot.wificountrycode 00
 
 # DASH
