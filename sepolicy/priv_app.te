@@ -1,4 +1,13 @@
-allow priv_app device:dir {open read};
-allow priv_app proc_interrupts:file {open read getattr};
-allow priv_app proc_modules:file {open read getattr};
-allow priv_app sysfs:file {getattr};
+allow priv_app device:dir { open read };
+allow priv_app proc_interrupts:file { open read getattr };
+allow priv_app proc_modules:file { open read getattr };
+allow priv_app sysfs:file { getattr };
+allow priv_app persist_file:dir search;
+allow priv_app wifi_prop:file { open read getattr };
+allow priv_app radio_data_file:dir { open read getattr };
+allow priv_app nv_data_file:file { open read getattr };
+allow priv_app vndservice_contexts_file:file { open read getattr };
+allow priv_app service_contexts_file:file { open read getattr };
+allow priv_app sepolicy_file:file { open read getattr };
+allow priv_app cache_private_backup_file:dir { open read getattr };
+allow priv_app configfs:dir { open read };
