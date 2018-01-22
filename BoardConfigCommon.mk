@@ -265,7 +265,7 @@ WIFI_DRIVER_FW_PATH_P2P := "p2p"
 #WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
 #WIFI_DRIVER_MODULE_NAME := "wlan"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
-WIFI_DRIVER_PROBE_DELAY := 15
+WIFI_DRIVER_LOAD_DELAY := true
 
 # Enable workaround for slow rom flash
 BOARD_SUPPRESS_SECURE_ERASE := true
