@@ -1,1 +1,2 @@
 allow untrusted_app camera_prop:file { open read getattr };
+allow untrusted_app net_dns_prop:file { read };
