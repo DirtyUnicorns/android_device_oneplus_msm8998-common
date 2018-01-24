@@ -259,6 +259,10 @@ PRODUCT_PACKAGES += \
     ipacm \
     IPACM_cfg.xml
 
+# Text classifier smart selection model files
+PRODUCT_PACKAGES += \
+    textclassifier.smartselection.bundle1
+
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
