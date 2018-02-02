@@ -201,6 +201,9 @@ OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 
+# DRM
+TARGET_ENABLE_MEDIADRM_64 := true
+
 # Enable dexpreopt to speed boot time
 ifeq ($(HOST_OS),linux)
   ifneq ($(TARGET_BUILD_VARIANT),eng)
