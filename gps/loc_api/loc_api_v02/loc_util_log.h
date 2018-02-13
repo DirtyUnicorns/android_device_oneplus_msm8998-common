@@ -1,4 +1,4 @@
-/* Copyright (c) 2017, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011-2012, 2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -24,52 +24,63 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
  */
+#ifndef LOC_UTIL_LOG_H
+#define LOC_UTIL_LOG_H
 
-#ifndef MEASUREMENT_API_CLINET_H
-#define MEASUREMENT_API_CLINET_H
+#include <platform_lib_log_util.h>
 
-#include <mutex>
-#include <android/hardware/gnss/1.0/IGnssMeasurement.h>
-#include <android/hardware/gnss/1.0/IGnssMeasurementCallback.h>
-#include <LocationAPIClientBase.h>
-#include <hidl/Status.h>
+#if defined(_ANDROID_)
+#include "loc_api_v02_log.h"
 
-namespace android {
-namespace hardware {
-namespace gnss {
-namespace V1_0 {
-namespace implementation {
+#else // no _ANDROID_
 
-using ::android::hardware::gnss::V1_0::IGnssMeasurement;
-using ::android::sp;
+#if defined(__LOC_API_V02_LOG_SILENT__)
+#define MSG_LOG
+#define LOC_LOGE(...) MSG_LOG(__VA_ARGS__);
+#define LOC_LOGW(...) MSG_LOG(__VA_ARGS__);
+#define LOC_LOGD(...) MSG_LOG(__VA_ARGS__);
+#define LOC_LOGI(...) MSG_LOG(__VA_ARGS__);
+#define LOC_LOGV(...) MSG_LOG(__VA_ARGS__);
+#elif !defined(USE_GLIB)
 
-class MeasurementAPIClient : public LocationAPIClientBase
-{
-public:
-    MeasurementAPIClient();
-    virtual ~MeasurementAPIClient();
-    MeasurementAPIClient(const MeasurementAPIClient&) = delete;
-    MeasurementAPIClient& operator=(const MeasurementAPIClient&) = delete;
+// common for QNX and Griffon
 
-    // for GpsMeasurementInterface
-    Return<IGnssMeasurement::GnssMeasurementStatus> measurementSetCallback(
-            const sp<IGnssMeasurementCallback>& callback);
-    void measurementClose();
+//error logs
+#define LOC_LOGE(...) printf(__VA_ARGS__)
+//warning logs
+#define LOC_LOGW(...) printf(__VA_ARGS__)
+// debug logs
+#define LOC_LOGD(...) printf(__VA_ARGS__)
+//info logs
+#define LOC_LOGI(...) printf(__VA_ARGS__)
+//verbose logs
+#define LOC_LOGV(...) printf(__VA_ARGS__)
+#endif //__LOC_API_V02_LOG_SILENT__
 
-    // callbacks we are interested in
-    void onGnssMeasurementsCb(GnssMeasurementsNotification gnssMeasurementsNotification) final;
+#define MODEM_LOG_CALLFLOW(SPEC, VAL)
+#define EXIT_LOG_CALLFLOW(SPEC, VAL)
 
-private:
-    sp<IGnssMeasurementCallback> mGnssMeasurementCbIface;
-    std::mutex mMutex;
-    bool mTracking;
-};
+#define loc_get_v02_event_name(X) #X
+#define loc_get_v02_client_status_name(X) #X
 
-}  // namespace implementation
-}  // namespace V1_0
-}  // namespace gnss
-}  // namespace hardware
-}  // namespace android
-#endif // MEASUREMENT_API_CLINET_H
+#define loc_get_v02_qmi_status_name(X)  #X
+
+//specific to OFF TARGET
+#ifdef LOC_UTIL_TARGET_OFF_TARGET
+
+# include <stdio.h>
+# include <asm/errno.h>
+# include <sys/time.h>
+
+// get around strl*: not found in glibc
+// TBD:look for presence of eglibc other libraries
+// with strlcpy supported.
+#define strlcpy(X,Y,Z) strcpy(X,Y)
+#define strlcat(X,Y,Z) strcat(X,Y)
+
+#endif //LOC_UTIL_TARGET_OFF_TARGET
+
+#endif //_ANDROID_
+
+#endif //LOC_UTIL_LOG_H

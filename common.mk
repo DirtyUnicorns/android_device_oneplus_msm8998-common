@@ -119,11 +119,14 @@ PRODUCT_PACKAGES += \
 # GPS
 PRODUCT_PACKAGES += \
     gps.conf \
+    libcurl \
     libgnss \
+    libgnsspps \
     libgps.utils \
     liblocation_api \
     libloc_core \
     libloc_pla \
+    libloc_stub \
     libvehiclenetwork-native
 
 PRODUCT_COPY_FILES += \

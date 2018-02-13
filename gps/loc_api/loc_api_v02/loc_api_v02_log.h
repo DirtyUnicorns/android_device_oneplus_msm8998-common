@@ -1,4 +1,4 @@
-/* Copyright (c) 2017, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2011, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -9,7 +9,7 @@
  *       copyright notice, this list of conditions and the following
  *       disclaimer in the documentation and/or other materials provided
  *       with the distribution.
- *     * Neither the name of The Linux Foundation, nor the names of its
+ *     * Neither the name of The Linux Foundation nor the names of its
  *       contributors may be used to endorse or promote products derived
  *       from this software without specific prior written permission.
  *
@@ -27,49 +27,24 @@
  *
  */
 
-#ifndef MEASUREMENT_API_CLINET_H
-#define MEASUREMENT_API_CLINET_H
+#ifndef LOC_API_V02_LOG_H
+#define LOC_API_V02_LOG_H
 
-#include <mutex>
-#include <android/hardware/gnss/1.0/IGnssMeasurement.h>
-#include <android/hardware/gnss/1.0/IGnssMeasurementCallback.h>
-#include <LocationAPIClientBase.h>
-#include <hidl/Status.h>
-
-namespace android {
-namespace hardware {
-namespace gnss {
-namespace V1_0 {
-namespace implementation {
-
-using ::android::hardware::gnss::V1_0::IGnssMeasurement;
-using ::android::sp;
-
-class MeasurementAPIClient : public LocationAPIClientBase
+#ifdef __cplusplus
+extern "C"
 {
-public:
-    MeasurementAPIClient();
-    virtual ~MeasurementAPIClient();
-    MeasurementAPIClient(const MeasurementAPIClient&) = delete;
-    MeasurementAPIClient& operator=(const MeasurementAPIClient&) = delete;
+#endif
 
-    // for GpsMeasurementInterface
-    Return<IGnssMeasurement::GnssMeasurementStatus> measurementSetCallback(
-            const sp<IGnssMeasurementCallback>& callback);
-    void measurementClose();
+#include <loc_log.h>
+#include <loc_api_v02_client.h>
 
-    // callbacks we are interested in
-    void onGnssMeasurementsCb(GnssMeasurementsNotification gnssMeasurementsNotification) final;
+const char* loc_get_v02_event_name(uint32_t event);
+const char* loc_get_v02_client_status_name(locClientStatusEnumType status);
+const char* loc_get_v02_qmi_status_name(qmiLocStatusEnumT_v02 status);
 
-private:
-    sp<IGnssMeasurementCallback> mGnssMeasurementCbIface;
-    std::mutex mMutex;
-    bool mTracking;
-};
 
-}  // namespace implementation
-}  // namespace V1_0
-}  // namespace gnss
-}  // namespace hardware
-}  // namespace android
-#endif // MEASUREMENT_API_CLINET_H
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* LOC_API_V02_LOG_H */
