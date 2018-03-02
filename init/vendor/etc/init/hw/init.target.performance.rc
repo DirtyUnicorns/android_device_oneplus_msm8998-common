@@ -34,6 +34,25 @@ on boot
     chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
     chmod 0660 /dev/cpuset/camera-daemon/tasks
 
+    # Set I/O Scheduler tweaks
+    write /sys/block/sda/queue/scheduler maple
+    write /sys/block/sda/queue/read_ahead_kb 512
+    write /sys/block/sda/queue/iosched/writes_starved 4
+    write /sys/block/sda/queue/iosched/fifo_batch 16
+    write /sys/block/sda/queue/iosched/sync_read_expire 350
+    write /sys/block/sda/queue/iosched/sync_write_expire 550
+    write /sys/block/sda/queue/iosched/async_read_expire 250
+    write /sys/block/sda/queue/iosched/async_write_expire 450
+    write /sys/block/sda/queue/iosched/sleep_latency_multiple 10
+
+    # Sound settings
+    write /sys/kernel/sound_control/earpiece_gain 10
+    write /sys/kernel/sound_control/mic_gain 10
+    write /sys/kernel/sound_control/headphone_gain "10 10"
+
+    # Don't treat storage as rotational
+    write /sys/block/sda/queue/rotational 0
+
 on charger
     # Enable UFS powersaving
     write /sys/devices/soc/1da4000.ufshc/clkscale_enable 1
@@ -185,6 +204,7 @@ on property:sys.boot_completed=1
 
     # Disable sched boost
     write /proc/sys/kernel/sched_boost 0
+    chmod 0444 /proc/sys/kernel/sched_boost
 
     # Enable Adaptive LMK
     write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
