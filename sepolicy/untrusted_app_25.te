@@ -1,2 +1,5 @@
 allow untrusted_app_25 camera_prop:file { open read getattr };
 allow untrusted_app_25 sysfs:file { open read getattr };
+
+dontaudit untrusted_app_25 proc:file { read open getattr };
+dontaudit untrusted_app_25 proc_stat:file { read open getattr };
