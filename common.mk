@@ -276,6 +276,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vndk-sp
 
+# VR
+PRODUCT_PACKAGES += \
+    vr.msm8998
+
 # WiFi
 PRODUCT_PACKAGES += \
     hostapd \
