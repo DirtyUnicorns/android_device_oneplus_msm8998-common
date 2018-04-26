@@ -1,0 +1,2 @@
+unix_socket_connect(untrusted_app_25, qvrd, qvrd);
+allow untrusted_app_25 qvrd:fd use;
