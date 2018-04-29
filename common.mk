@@ -116,6 +116,7 @@ PRODUCT_PACKAGES += \
 # GPS
 PRODUCT_PACKAGES += \
     libgnss \
+    libgnsspps \
     libgps.utils \
     liblocation_api \
     libloc_core \
