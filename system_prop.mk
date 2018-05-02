@@ -231,6 +231,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     sys.usb.rndis.func.name=gsi \
     sys.usb.rmnet.func.name=gsi
 
+# Vendor
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.vendor.patch.level=OxygenOS_5.1.1
+
 # Wi-Fi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
