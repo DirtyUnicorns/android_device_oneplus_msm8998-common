@@ -1,1 +1,2 @@
 allow dpmd self:capability { dac_read_search dac_override };
+allow dpmd diag_device:chr_file { read write open ioctl };
