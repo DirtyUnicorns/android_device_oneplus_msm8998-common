@@ -10,3 +10,4 @@ allow system_server persist_file:dir { rw_dir_perms };
 set_prop(system_server, qti_telephony_prop);
 dontaudit system_server dalvikcache_data_file:file { execute write };
 allow system_server diag_device:chr_file { read write open ioctl };
+allow system_server kernel:system { syslog_read };
