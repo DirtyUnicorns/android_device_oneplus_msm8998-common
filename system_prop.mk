@@ -233,7 +233,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Vendor
 PRODUCT_PROPERTY_OVERRIDES += \
-ro.vendor.patch.level=OxygenOS_5.1.1
+ro.vendor.patch.level=OxygenOS_5.1.2
 
 # Wi-Fi
 PRODUCT_PROPERTY_OVERRIDES += \
