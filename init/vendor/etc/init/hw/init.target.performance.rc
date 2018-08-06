@@ -23,6 +23,7 @@ on boot
     write /dev/stune/foreground/schedtune.prefer_idle 1
     write /dev/stune/top-app/schedtune.prefer_idle 1
     write /dev/stune/top-app/schedtune.boost 1
+    write /dev/stune/top-app/schedtune.dynamic_boost 0
 
     # Add a cpuset for the camera daemon
     mkdir /dev/cpuset/camera-daemon 0750 cameraserver cameraserver
@@ -41,6 +42,15 @@ on boot
     write /sys/block/sda/queue/iosched/async_read_expire 250
     write /sys/block/sda/queue/iosched/async_write_expire 450
     write /sys/block/sda/queue/iosched/sleep_latency_multiple 10
+    write /sys/block/sde/queue/scheduler maple
+    write /sys/block/sde/queue/read_ahead_kb 512
+    write /sys/block/sde/queue/iosched/writes_starved 4
+    write /sys/block/sde/queue/iosched/fifo_batch 16
+    write /sys/block/sde/queue/iosched/sync_read_expire 350
+    write /sys/block/sde/queue/iosched/sync_write_expire 550
+    write /sys/block/sde/queue/iosched/async_read_expire 250
+    write /sys/block/sde/queue/iosched/async_write_expire 450
+    write /sys/block/sde/queue/iosched/sleep_latency_multiple 10
 
     # Sound settings
     write /sys/kernel/sound_control/earpiece_gain 10
@@ -102,14 +112,14 @@ on property:sys.boot_completed=1
 
     # online clusters
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "schedutil"
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 250
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 1500
     write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/iowait_boost_enable 1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 300000
 
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "schedutil"
-    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 500
-    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 20000
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 250
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 1500
     write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/iowait_boost_enable 1
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 300000
 
@@ -118,8 +128,8 @@ on property:sys.boot_completed=1
 
     # Enable input boost configuration
     write /sys/module/cpu_boost/parameters/input_boost_freq "0:1036800"
-    write /sys/module/cpu_boost/parameters/dynamic_stune_boost 15
-    write /sys/module/cpu_boost/parameters/input_boost_ms 500
+    write /sys/module/cpu_boost/parameters/dynamic_stune_boost 0
+    write /sys/module/cpu_boost/parameters/input_boost_ms 150
 
     # Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
@@ -170,10 +180,6 @@ on property:sys.boot_completed=1
     write /dev/cpuset/background/cpus 0-1
     write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/camera-daemon/cpus 0-3
-
-    # Disable sched boost
-    write /proc/sys/kernel/sched_boost 0
-    chmod 0444 /proc/sys/kernel/sched_boost
 
     # Enable Adaptive LMK
     write /sys/module/lowmemorykiller/parameters/minfree "18432,23040,27648,32256,55296,80640"
