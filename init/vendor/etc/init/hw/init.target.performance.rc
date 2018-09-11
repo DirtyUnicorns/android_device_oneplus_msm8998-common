@@ -33,6 +33,34 @@ on boot
     write /dev/cpuset/background/cpus 0-7
     write /dev/cpuset/system-background/cpus 0-7
 
+    # Set I/O Scheduler tweaks
+    write /sys/block/sda/queue/scheduler maple
+    write /sys/block/sda/queue/read_ahead_kb 512
+    write /sys/block/sda/queue/iosched/writes_starved 4
+    write /sys/block/sda/queue/iosched/fifo_batch 16
+    write /sys/block/sda/queue/iosched/sync_read_expire 350
+    write /sys/block/sda/queue/iosched/sync_write_expire 550
+    write /sys/block/sda/queue/iosched/async_read_expire 250
+    write /sys/block/sda/queue/iosched/async_write_expire 450
+    write /sys/block/sda/queue/iosched/sleep_latency_multiple 10
+    write /sys/block/sde/queue/scheduler maple
+    write /sys/block/sde/queue/read_ahead_kb 512
+    write /sys/block/sde/queue/iosched/writes_starved 4
+    write /sys/block/sde/queue/iosched/fifo_batch 16
+    write /sys/block/sde/queue/iosched/sync_read_expire 350
+    write /sys/block/sde/queue/iosched/sync_write_expire 550
+    write /sys/block/sde/queue/iosched/async_read_expire 250
+    write /sys/block/sde/queue/iosched/async_write_expire 450
+    write /sys/block/sde/queue/iosched/sleep_latency_multiple 10
+
+    # Sound settings
+    write /sys/kernel/sound_control/earpiece_gain 10
+    write /sys/kernel/sound_control/mic_gain 10
+    write /sys/kernel/sound_control/headphone_gain "10 10"
+
+    # Don't treat storage as rotational
+    write /sys/block/sda/queue/rotational 0
+
 on charger
     # Enable UFS powersaving
     write /sys/devices/soc/1da4000.ufshc/clkscale_enable 1
@@ -118,7 +146,8 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/ignore_hispeed_on_notif 1
 
     # Core Control
-    write /sys/devices/system/cpu/cpu4/core_ctl/min_cpus 2
+    write /sys/devices/system/cpu/cpu4/core_ctl/min_cpus 0
+    write /sys/devices/system/cpu/cpu4/core_ctl/max_cpus 4
     write /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres 60
     write /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres 30
     write /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms 100
@@ -201,9 +230,6 @@ on property:sys.boot_completed=1
     write /proc/sys/kernel/sched_spill_nr_run 5
     write /proc/sys/kernel/sched_restrict_cluster_spill 1
     write /proc/sys/kernel/sched_prefer_sync_wakee_to_waker 1
-
-    # Set BFQ I/O scheduler
-    setprop sys.io.scheduler "bfq"
 
     # Is IOP even still a thing?
     start iop
