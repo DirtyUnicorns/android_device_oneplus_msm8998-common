@@ -24,7 +24,11 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
 
-import org.lineageos.internal.util.FileUtils;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ProximitySensor implements SensorEventListener {
 
@@ -47,10 +51,10 @@ public class ProximitySensor implements SensorEventListener {
         mSensorManager = mContext.getSystemService(SensorManager.class);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 
-        if (FileUtils.fileExists(CHEESEBURGER_FILE)) {
+        if (fileExists(CHEESEBURGER_FILE)) {
             FPC_FILE = CHEESEBURGER_FILE;
             found = true;
-        } else if (FileUtils.fileExists(DUMPLING_FILE)) {
+        } else if (fileExists(DUMPLING_FILE)) {
             FPC_FILE = DUMPLING_FILE;
             found = true;
         } else {
@@ -74,8 +78,8 @@ public class ProximitySensor implements SensorEventListener {
     }
 
     private void setFPProximityState(boolean isNear) {
-        if (FileUtils.isFileWritable(FPC_FILE)) {
-            FileUtils.writeLine(FPC_FILE, isNear ? "1" : "0");
+        if (isFileWritable(FPC_FILE)) {
+            writeLine(FPC_FILE, isNear ? "1" : "0");
         } else {
             Log.e(TAG, "Proximity state file " + FPC_FILE + " is not writable!");
         }
@@ -93,4 +97,53 @@ public class ProximitySensor implements SensorEventListener {
         // Ensure FP is left enabled
         setFPProximityState(/* isNear */ false);
     }
+
+    /**
+     * Checks whether the given file exists
+     *
+     * @return true if exists, false if not
+     */
+    public static boolean fileExists(String fileName) {
+        final File file = new File(fileName);
+        return file.exists();
+    }
+     /**
+     * Checks whether the given file is writable
+     *
+      * @return true if writable, false if not
+      */
+     public static boolean isFileWritable(String fileName) {
+         final File file = new File(fileName);
+         return file.exists() && file.canWrite();
+     }
+
+     /**
+      * Writes the given value into the given file
+      *
+      * @return true on success, false on failure
+      */
+     public static boolean writeLine(String fileName, String value) {
+         BufferedWriter writer = null;
+
+         try {
+             writer = new BufferedWriter(new FileWriter(fileName));
+             writer.write(value);
+         } catch (FileNotFoundException e) {
+             Log.w(TAG, "No such file " + fileName + " for writing", e);
+             return false;
+         } catch (IOException e) {
+             Log.e(TAG, "Could not write to file " + fileName, e);
+             return false;
+         } finally {
+             try {
+                 if (writer != null) {
+                     writer.close();
+                 }
+             } catch (IOException e) {
+                 // Ignored, not much we can do anyway
+             }
+         }
+
+         return true;
+     }
 }
