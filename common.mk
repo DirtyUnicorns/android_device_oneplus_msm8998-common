@@ -412,7 +412,7 @@ PRODUCT_PACKAGES += \
 
 # Vendor security patch level
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.patch.level=OxygenOS_5.1.5
+    ro.vendor.patch.level=2018-12-01
 
 # Vibrator
 PRODUCT_PACKAGES += \
