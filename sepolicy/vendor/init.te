@@ -6,3 +6,4 @@ allow init sysfs_graphics:lnk_file { r_file_perms };
 allow init sysfs_leds:file { r_file_perms };
 allow init sysfs_leds:lnk_file { r_file_perms };
 allow init proc:file { r_file_perms };
+allow init hal_wifi_hostapd_default:process { noatsecure };
