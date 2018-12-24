@@ -324,5 +324,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg_cta.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg_cta.ini \
     $(LOCAL_PATH)/wifi/wifi_concurrency_cfg.txt:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wifi_concurrency_cfg.txt
 
+# Wi-Fi Display
+PRODUCT_BOOT_JARS += \
+    WfdCommon
+
 # Inherit from oneplus-extras
 $(call inherit-product, device/oneplus/extras/common.mk)
