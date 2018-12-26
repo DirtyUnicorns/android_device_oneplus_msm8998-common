@@ -21,7 +21,7 @@ service vendor.wifi-mac-generator /vendor/bin/wifi-mac-generator
     group wifi
     oneshot
     disabled
-    seclabel u:r:wifi_mac_generator:s0
+#   seclabel u:r:wifi_mac_generator:s0
 
 service vendor.bt-mac-generator /vendor/bin/bt-mac-generator
     class main
@@ -29,4 +29,4 @@ service vendor.bt-mac-generator /vendor/bin/bt-mac-generator
     group bluetooth
     oneshot
     disabled
-    seclabel u:r:bt_mac_generator:s0
+#   seclabel u:r:bt_mac_generator:s0
