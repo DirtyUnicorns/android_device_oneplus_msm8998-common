@@ -245,8 +245,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.usb.controller=a800000.dwc3 \
     sys.usb.rndis.func.name=gsi \
-    sys.usb.rmnet.func.name=gsi \
-    sys.usb.ffs.aio_compat=1
+    sys.usb.rmnet.func.name=gsi
 
 # Wi-Fi
 PRODUCT_PROPERTY_OVERRIDES += \
