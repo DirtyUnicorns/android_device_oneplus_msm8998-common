@@ -1,5 +1,7 @@
 allow vendor_init dash_device:chr_file { r_file_perms };
 allow vendor_init nfc_data_file:dir { setattr };
-allow vendor_init rootfs:dir { write };
-allow vendor_init system_data_file:dir { setattr };
-allow vendor_init tmpfs:dir { write };
+allow vendor_init rootfs:dir { write add_name };
+allow vendor_init system_data_file:dir { write create add_name setattr };
+allow vendor_init tmpfs:dir { write create add_name };
+allow vendor_init vendor_radio_data_file:file { open read write setattr };
+allow vendor_init vendor_radio_data_file:dir { open read write search create setattr };

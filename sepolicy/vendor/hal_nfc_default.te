@@ -1,5 +1,10 @@
 allow hal_nfc_default nfc_data_file:dir { search getattr };
 allow hal_nfc_default nfc_data_file:file { rw_file_perms };
 
-allow hal_nfc_default nfc_vendor_data_file:dir { search getattr };
-allow hal_nfc_default nfc_vendor_data_file:file { rw_file_perms };
+allow hal_nfc_default nfc_vendor_data_file:dir { write add_name search getattr };
+allow hal_nfc_default nfc_vendor_data_file:file { rw_file_perms create };
+
+allow hal_nfc_default default_android_hwservice:hwservice_manager add;
+
+allow hal_nfc_default hal_secure_element_hwservice:hwservice_manager find;
+allow hal_nfc_default hal_secure_element_default:binder call;
