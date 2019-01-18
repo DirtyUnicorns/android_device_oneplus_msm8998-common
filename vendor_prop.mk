@@ -20,8 +20,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
-    af.fast_track_multiplier=2 \
-    vendor.audio_hal.period_size=192 \
+    af.fast_track_multiplier=1 \
     audio.offload.video=true \
     audio.offload.pcm.16bit.enable=true \
     audio.offload.pcm.24bit.enable=true \
@@ -30,16 +29,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.min.duration.secs=30 \
     persist.dirac.acs.controller=qem \
     ro.dirac.acs.storeSettings=1 \
-    ro.dirac.ignore_error=1
+    ro.dirac.ignore_error=1 \
+    tunnel.audio.encode=true
 
 # Audio new
 PRODUCT_PROPERTY_OVERRIDES += \
     vendor.audio_hal.period_size=192 \
     ro.vendor.audio.sdk.fluencetype=fluencepro \
+    persist.vendor.audio_hal.dsp_bit_width_enforce_mode=24 \
     persist.vendor.audio.fluence.voicecall=true \
     persist.vendor.audio.fluence.voicerec=true \
     persist.vendor.audio.fluence.speaker=true \
-    vendor.audio.tunnel.encode=false \
+    vendor.audio.tunnel.encode=true \
     persist.vendor.audio.ras.enabled=false \
     vendor.audio.offload.buffer.size.kb=32 \
     vendor.audio.offload.track.enable=true \
@@ -93,14 +94,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Core control
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.qti.core_ctl_min_cpu=0 \
+    ro.vendor.qti.core_ctl_min_cpu=2 \
     ro.vendor.qti.core_ctl_max_cpu=4
 
 # Data
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.use_data_netmgrd=true \
     persist.data.netmgrd.qos.enable=true \
-    persist.data.mode=concurrent
+    persist.data.mode=concurrent \
+    persist.vendor.data.mode=concurrent \
+    ro.use_data_netmgrd=true \
+    ro.vendor.use_data_netmgrd=true
+
+#Disable Connor
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.connor.disable=1
 
 # DPM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -134,6 +141,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.display.disable_skip_validate=1 \
     vendor.display.enable_default_color_mode=0 \
     vendor.display.perf_hint_window=50
+
+#IOP properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.iop.enable_uxe=0 \
+    vendor.iop.enable_prefetch_ofr=0
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -191,22 +203,27 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.rild.nitz_short_ons_3="" \
     ril.subscription.types=NV,RUIM \
     ro.telephony.default_network=22,20 \
-    telephony.lteOnCdmaDevice=1 \
+    telephony.lteOnCdmaDevice=1,1 \
     keyguard.no_require_sim=true \
     persist.sys.oem_smooth=1 \
-    persist.radio.VT_CAM_INTERFACE=1 \
+    persist.radio.VT_CAM_INTERFACE=1 \
     persist.radio.apm_sim_not_pwdn=1 \
     persist.radio.multisim.config=dsds \
+    persist.radio.efssync=true \
     persist.radio.enhance_ecall=true \
     persist.radio.hw_mbn_update=0 \
     persist.radio.sw_mbn_update=0 \
     persist.radio.start_ota_daemon=0 \
+    persist.vendor.radio.apm_sim_not_pwdn=1 \
     persist.vendor.radio.custom_ecc=1 \
     persist.vendor.radio.data_con_rprt=1 \
     persist.vendor.radio.data_ltd_sys_ind=1 \
     persist.vendor.radio.ignore_dom_time=10 \
     persist.vendor.radio.rat_on=combine \
-    persist.vendor.radio.sib16_support=1
+    persist.vendor.radio.sib16_support=1 \
+    persist.vendor.radio.bar_fake_gcell=1 \
+    persist.vendor.radio.arfcn_test_mode=3 \
+    persist.vendor.data.iwlan.enable=true
 
 # RmNet Data
 PRODUCT_PROPERTY_OVERRIDES += \
