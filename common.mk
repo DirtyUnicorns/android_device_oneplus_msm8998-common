@@ -285,10 +285,6 @@ PRODUCT_PACKAGES += \
 # Vendor properties
 -include $(LOCAL_PATH)/vendor_prop.mk
 
-# Vendor security patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.patch.level=2018-12-01
-
 # VNDK
 PRODUCT_PACKAGES += \
     vndk_package
