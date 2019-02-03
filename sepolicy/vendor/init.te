@@ -1,10 +1,9 @@
 allow init dash_device:chr_file { getattr };
 allow init fingerprint_device:chr_file { setattr };
 allow init ipa_dev:chr_file { rw_file_perms };
-allow init sysfs:file { r_file_perms };
 allow init sysfs_graphics:lnk_file { r_file_perms };
 allow init sysfs_leds:file { r_file_perms };
 allow init sysfs_leds:lnk_file { r_file_perms };
-allow init proc:file { r_file_perms };
 allow init hal_wifi_hostapd_default:process { noatsecure };
-allow init system_file:file { execute_no_trans };
+allow init sysfs_data:file { open read setattr };
+allow init sysfs_fpc:file { open read setattr };

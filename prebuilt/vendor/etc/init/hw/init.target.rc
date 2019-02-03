@@ -31,7 +31,9 @@ import /vendor/etc/init/hw/init.target.displaymodes.rc
 import /vendor/etc/init/hw/init.target.performance.rc
 
 on early-init
-    symlink /data/vendor/tombstones /tombstones
+    mkdir /firmware 0771 system system
+    mkdir /bt_firmware 0771 system system
+    mkdir /dsp 0771 media media
     write /proc/sys/kernel/sched_boost 1
 
 on init
@@ -64,11 +66,11 @@ on post-fs
     write /dev/ipa 1
 
 on post-fs-data
-    mkdir /data/vendor/tombstones 0771 system system
-    mkdir /tombstones/modem 0771 system system
-    mkdir /tombstones/lpass 0771 system system
-    mkdir /tombstones/wcnss 0771 system system
-    mkdir /tombstones/dsps 0771 system system
+    mkdir /data/tombstones 0771 system system
+    mkdir /data/tombstones/modem 0771 system system
+    mkdir /data/tombstones/lpass 0771 system system
+    mkdir /data/tombstones/wcnss 0771 system system
+    mkdir /data/tombstones/dsps 0771 system system
     mkdir /data/vendor/hbtp 0750 system system
     #mkdir /data/misc/qvr 0770 system system
 
@@ -331,23 +333,23 @@ service vendor.imsdatadaemon /vendor/bin/imsdatadaemon
 #    group camera system inet input graphics
 #
 # Stop mdm_helper_proxy in case of shutdown
-#on property:sys.shutdown.requested=*
-#    stop mdm_helper_proxy
-#
+on property:sys.shutdown.requested=*
+    stop mdm_helper_proxy
+
 # Stop mdm_helper_proxy on APQ target
-#on property:ro.radio.noril=yes
-#    stop mdm_helper_proxy
-#
-#on property:persist.airplane.mode.pwr.svg=enabled
-#    setprop ro.mdm_helper_proxy_req false
-#
-#on property:init.svc.ril-daemon=running
-#    setprop ro.mdm_helper_proxy_req true
-#
+on property:ro.radio.noril=yes
+    stop mdm_helper_proxy
+
+on property:persist.airplane.mode.pwr.svg=enabled
+    setprop ro.mdm_helper_proxy_req false
+
+on property:init.svc.ril-daemon=running
+    setprop ro.mdm_helper_proxy_req true
+
 ## Start mdm_helper_proxy
-#on property:ro.mdm_helper_proxy_req=true
-#    start mdm_helper_proxy
-#
+on property:ro.mdm_helper_proxy_req=true
+    start mdm_helper_proxy
+
 ## QCA1530 SoC core detect
 #service gnss-detect /system/vendor/bin/gnss.qca1530.sh detect
 #   class core

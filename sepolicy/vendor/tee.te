@@ -1,2 +1,5 @@
-allow tee fingerprintd_data_file:dir { rw_dir_perms };
+typeattribute tee data_between_core_and_vendor_violators;
+
+allow tee fingerprintd_data_file:dir { open read search write add_name remove_name };
 allow tee fingerprintd_data_file:file { create rw_file_perms unlink };
+allow tee system_data_file:dir { open read write add_name };

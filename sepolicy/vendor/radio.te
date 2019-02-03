@@ -1,2 +1,7 @@
+typeattribute radio system_executes_vendor_violators;
+
 allow radio vendor_file:file { r_file_perms execute };
+allow radio vendor_radio_data_file:dir rw_dir_perms;
+allow radio vendor_radio_data_file:file create_file_perms;
+
 get_prop(radio, qcom_ims_prop)
