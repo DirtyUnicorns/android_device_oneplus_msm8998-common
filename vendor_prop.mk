@@ -94,7 +94,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Connor
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.connor.disable=0
+    persist.vendor.connor.disable=1
 
 # Core control
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -108,10 +108,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.data.mode=concurrent \
     ro.use_data_netmgrd=true \
     ro.vendor.use_data_netmgrd=true
-
-#Disable Connor
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.connor.disable=1
 
 # DPM
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -215,8 +211,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     telephony.lteOnCdmaDevice=1,1 \
     keyguard.no_require_sim=true \
     persist.sys.oem_smooth=1 \
-    persist.radio.VT_CAM_INTERFACE=1 \
-    persist.radio.apm_sim_not_pwdn=1 \
+    persist.radio.VT_CAM_INTERFACE=1 \
+    persist.radio.efssync=true \
     persist.radio.multisim.config=dsds \
     persist.radio.efssync=true \
     persist.radio.enhance_ecall=true \
