@@ -19,6 +19,16 @@ on boot
     chown system system /sys/devices/soc/soc:goodix_fp/proximity_state
     chmod 0660 /sys/devices/soc/soc:goodix_fp/proximity_state
 
+    # Tri-State-Key
+    chown system system /proc/tri-state-key/keyCode_top
+    chmod 0660 /proc/tri-state-key/keyCode_top
+
+    chown system system /proc/tri-state-key/keyCode_middle
+    chmod 0660 /proc/tri-state-key/keyCode_middle
+
+    chown system system /proc/tri-state-key/keyCode_bottom
+    chmod 0660 /proc/tri-state-key/keyCode_bottom
+
 service vendor.wifi-mac-generator /vendor/bin/wifi-mac-generator
     class main
     user wifi
