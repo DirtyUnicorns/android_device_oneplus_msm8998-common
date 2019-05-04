@@ -105,6 +105,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.netmgrd.qos.enable=true \
     persist.data.mode=concurrent \
+    persist.radio.aosp_usr_pref_sel=true \
     persist.vendor.data.mode=concurrent \
     ro.use_data_netmgrd=true \
     ro.vendor.use_data_netmgrd=true
