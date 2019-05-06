@@ -87,6 +87,10 @@ PRODUCT_PACKAGES += \
     libbthost_if \
     bt-mac-generator
 
+# Camera
+PRODUCT_PACKAGES += \
+    libstdc++.vendor
+
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
     cneapiclient \
