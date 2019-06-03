@@ -16,8 +16,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/../thermal-engine
-LOCAL_HEADER_LIBRARIES := libcutils_headers libhardware_headers
+LOCAL_HEADER_LIBRARIES := libThermal_headers libcutils_headers libhardware_headers
 LOCAL_MODULE := vr.$(TARGET_BOARD_PLATFORM)
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_PROPRIETARY_MODULE := true
