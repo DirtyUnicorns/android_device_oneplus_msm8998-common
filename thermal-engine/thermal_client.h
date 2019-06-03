@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2016, 2019, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -42,12 +42,16 @@ enum supported_fields {
 	UNKNOWN_FIELD = 0x0,
 	DISABLE_FIELD = 0x1,
 	SAMPLING_FIELD = 0x2,
+	POLLING_DELAY_FIELD = SAMPLING_FIELD,
 	THRESHOLDS_FIELD = 0x4,
 	SET_POINT_FIELD = THRESHOLDS_FIELD,
 	THRESHOLDS_CLR_FIELD = 0x8,
 	SET_POINT_CLR_FIELD = THRESHOLDS_CLR_FIELD,
 	ACTION_INFO_FIELD = 0x10,
-	SUPPORTED_FIELD_MAX = 0x20,
+	UPPER_LIMIT_FIELD = ACTION_INFO_FIELD,
+	LOWER_LIMIT_FIELD = 0x20,
+	PASSIVE_DELAY_FIELD = 0x40,
+	SUPPORTED_FIELD_MAX = 0x80,
 };
 
 enum field_data_type {
@@ -86,6 +90,10 @@ int thermal_client_config_set(struct config_instance *configs, unsigned int conf
 int thermal_client_register_callback(char *client_name, int (*callback)(int , void *, void *), void *data);
 int thermal_client_request(char *client_name, int req_data);
 void thermal_client_unregister_callback(int client_cb_handle);
+
+/* APIs for bandwidth clients to send/clear bandwidth perf levels to thermal-engine */
+int thermal_bandwidth_client_request(char *client_name, int req_data);
+void thermal_bandwidth_client_cancel_request(char *client_name);
 
 #ifdef __cplusplus
 }
