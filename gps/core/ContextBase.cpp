@@ -161,7 +161,7 @@ void ContextBase::readConfig()
              // For APQ targets, MSA/MSB capabilities should be reset
              mGps_conf.CAPABILITIES &= ~(LOC_GPS_CAPABILITY_MSA | LOC_GPS_CAPABILITY_MSB);
              break;
-        default:
+          default:
              break;
         }
     }
