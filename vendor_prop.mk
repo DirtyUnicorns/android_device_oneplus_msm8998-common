@@ -391,3 +391,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Wi-Fi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
+
+# Enable navbar
+PRODUCT_PROPERTY_OVERRIDES += \
+    qemu.hw.mainkeys=0
