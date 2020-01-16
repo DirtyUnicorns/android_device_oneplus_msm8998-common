@@ -82,7 +82,6 @@
     <hidden-api-whitelisted-app package="com.qualcomm.qti.lpa" />
     <hidden-api-whitelisted-app package="com.qualcomm.qti.uim" />
 
-    <hidden-api-whitelisted-app package="org.codeaurora.snapcam" />
     <hidden-api-whitelisted-app package="com.android.mms" />
     <hidden-api-whitelisted-app package="com.qualcomm.qti.carrierswitch" />
     <hidden-api-whitelisted-app package="com.qualcomm.qti.carrierconfigure" />
@@ -97,7 +96,6 @@
     <hidden-api-whitelisted-app package="org.codeaurora.gallery" />
     <hidden-api-whitelisted-app package="com.example.connmgr" />
     <hidden-api-whitelisted-app package="com.android.email" />
-    <hidden-api-whitelisted-app package="com.cyanogenmod.filemanager" />
     <hidden-api-whitelisted-app package="com.qualcomm.qti.presenceappSub2" />
     <hidden-api-whitelisted-app package="com.qualcomm.secureindicator" />
     <hidden-api-whitelisted-app package="com.qualcomm.qti.sysmonappExternal" />
